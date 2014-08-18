@@ -1,0 +1,4 @@
+eyeCandy
+========
+
+Collaborative Visual Generation
