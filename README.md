@@ -58,7 +58,7 @@ processing-java viz/viz.pde
 
 Done setting up now lets use it!
 
-* Go to the ip address of the computer running the node server in a browser on any device capable of pinging that computer (probably on the local network).
+* Type the ip address of the computer running the node server in a browser on any device capable of pinging that computer (probably on the local network).
 * As you navigate the pages you should see the image change in processing. 
 
 
