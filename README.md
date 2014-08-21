@@ -47,14 +47,13 @@ These directions assume both the node.js webserver server and processing are run
 `git clone https://github.com/humanwireio/eyeCandy/`
 * start the node server
 ```
-cd eyeCandy/webserver;
-screen -d -m node server.js
+cd eyeCandy;
+screen -d -m node webserver/server.js
 ```
 
 * start processing
 ```
-cd ../viz;
-processing projectorPlatform.pde
+processing-java viz/viz.pde
 ```
 
 Done setting up now lets use it!
