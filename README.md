@@ -28,6 +28,7 @@ Install these guys first:
 * processing (v?)
   * osc lib
   * other libs?
+  * processing-java command line (installable from tools menu in processing gui)
 * screen (optional, can just run webserver in the background using &)
 
 # how to use
