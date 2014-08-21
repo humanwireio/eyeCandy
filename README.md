@@ -31,8 +31,8 @@ Because the OSC server (processing) can receive messages from anyone, multiple d
 # dependencies
 Install these guys first:
 
-* node, npm
-* processing (2.2.1+)
+* [node](http://nodejs.org/), npm
+* [processing](https://processing.org/download/) (2.2.1+)
   * [oscP5](http://www.sojamo.de/libraries/oscP5/)
   * [minim](http://code.compartmental.net/tools/minim/) (for FFTCircles patch)
   * processing-java command line (installable from tools menu in processing ide)
