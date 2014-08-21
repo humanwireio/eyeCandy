@@ -31,12 +31,11 @@ Because the OSC server (processing) can receive messages from anyone, multiple d
 # dependencies
 Install these guys first:
 
-* node
-  * node modules?
-* processing (2.2.1)
+* node, npm
+* processing (2.2.1+)
   * [oscP5](http://www.sojamo.de/libraries/oscP5/)
-  * other libs?
-  * processing-java command line (installable from tools menu in processing gui)
+  * [minim](http://code.compartmental.net/tools/minim/) (for FFTCircles patch)
+  * processing-java command line (installable from tools menu in processing ide)
 * screen (optional, can just run webserver in the background using &)
 
 # how to use
