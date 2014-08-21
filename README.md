@@ -22,7 +22,9 @@ Because processing and node have libraries galore, it's easy to add almost any t
 By default we use [jquery-kontrol](http://anthonyterrien.com/kontrol/) for xypads, sliders, knobs but any library that can be dropped in will work (think webcams, accelerometers, etc.)
 
 # how it works
-The website you are accessing is being run on a node.js server, which in turn is sending open sound control (OSC) messages to a processing sketch telling it when y-axesou visit pages and interact with elements of the site. In response the processing sketch produces sweet visuals based on this  information like this!
+The website you are accessing is being run on a node.js server, which in turn is sending open sound
+ control (OSC) messages to a processing sketch telling it when you visit pages and interact with elements of the site.
+ In response the processing sketch produces sweet visuals based on this information like this!
 
 Because the OSC server (processing) can receive messages from anyone, multiple devices can control different, or the same elements of the visuals being generated.  You're only limited by how many devices you can connect to it.
 
