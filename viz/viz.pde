@@ -17,7 +17,6 @@ ripplingColors rc;
 rippling3D r3D;
 daisies da;
 gameOfLife gol;
-caliSunset sunset;
 FFTCircles circs;
 ArrayList<patch> patches;
 ArrayList<Boolean> patch_switch;
@@ -43,13 +42,11 @@ void setup(){
   r3D = new rippling3D();
   da = new daisies(this);
   gol = new gameOfLife();
-  sunset = new caliSunset();
   circs = new FFTCircles(this);
   patches.add(rc);
   patches.add(r3D);
   patches.add(da);
   patches.add(gol);
-  patches.add(sunset);
   patches.add(circs);
  
   oscP5.plug(this,"pinged","/ping");
@@ -120,30 +117,16 @@ void oscEvent(OscMessage theOscMessage) {
    if (theOscMessage.addrPattern().length() == 2) {
      try {
         int patch_num = int(str(theOscMessage.addrPattern().charAt(1)));
-//        switch (patch_num) {
-//          case 1:
-//            pick_single_patch(patch_switch, 0);
-//            break;
-//          case 2:
-//            pick_single_patch(patch_switch, 1);
-//            break;
-//          case 3:
-//            pick_single_patch(patch_switch, 2);
-//            break;
-//          case 4:
-//            pick_single_patch(patch_switch, 3);
-//            break;
-//        }
-        
-      println("IP: " +  ", Patch_num: " + str(patch_num));
-      //device management
-      if (patch_num==9){
-        dev_timers.remove(ip);
-        dev_patches.remove(ip);
-      } else {
-        dev_patches.set(ip,patch_num);
-        dev_timers.set(ip, millis());
-      }
+          
+        println("IP: " +  ", Patch_num: " + str(patch_num));
+        //device management
+        if (patch_num==9){
+          dev_timers.remove(ip);
+          dev_patches.remove(ip);
+        } else {
+          dev_patches.set(ip,patch_num);
+          dev_timers.set(ip, millis());
+        }
       
       } catch (Exception e) {
         println("error parsing patch code");
