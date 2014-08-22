@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>eyeCandy by humanwireio</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>eyeCandy</h1>
+        <p>Collaborative Visual Generation using Processing, Node, and OSC</p>
+
+        <p class="view"><a href="https://github.com/humanwireio/eyeCandy">View the Project on GitHub <small>humanwireio/eyeCandy</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/humanwireio/eyeCandy/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/humanwireio/eyeCandy/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/humanwireio/eyeCandy">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="what-is-it" class="anchor" href="#what-is-it"><span class="octicon octicon-link"></span></a>what is it</h1>
+
+<p><img src="https://raw.githubusercontent.com/humanwireio/eyeCandy/master/exampleImages/example1.png" alt="example1"></p>
+
+<h3>
+<a name="imagine" class="anchor" href="#imagine"><span class="octicon octicon-link"></span></a>imagine…</h3>
+
+<p>You're in a room with thirty other people.
+Your phone is in your hand and your browser is open to a website, as is every other person's. The exact page (selected from a root directory page) determines what part of a complex visual on the wall you are controlling. If you leave that page the pattern you were controlling before disappears and will be replaced by a new pattern once you navigate to a new page.</p>
+
+<p>You can try it out right now on your computer!</p>
+
+<h4>
+<a name="donate" class="anchor" href="#donate"><span class="octicon octicon-link"></span></a>donate</h4>
+
+<p>If you like what you see here, help me fund this puppy</p>
+
+<h4>
+<a name="types-of-interaction" class="anchor" href="#types-of-interaction"><span class="octicon octicon-link"></span></a>types of interaction</h4>
+
+<p>Because processing and node have libraries galore, it's easy to add almost any type of interaction.</p>
+
+<p>By default we use <a href="http://anthonyterrien.com/kontrol/">jquery-kontrol</a> for xypads, sliders, knobs but any library that can be dropped in will work (think webcams, accelerometers, etc.)</p>
+
+<h1>
+<a name="how-it-works" class="anchor" href="#how-it-works"><span class="octicon octicon-link"></span></a>how it works</h1>
+
+<p>The website you are accessing is being run on a node.js server, which in turn is sending open sound
+ control (OSC) messages to a processing sketch telling it when you visit pages and interact with elements of the site.
+ In response the processing sketch produces sweet visuals based on this information like this!</p>
+
+<p>Because the OSC server (processing) can receive messages from anyone, multiple devices can control different, or the same elements of the visuals being generated.  You're only limited by how many devices you can connect to it.</p>
+
+<h1>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>dependencies</h1>
+
+<p>Install these guys first:</p>
+
+<ul>
+<li>
+<a href="http://nodejs.org/">node</a>, npm</li>
+<li>
+<a href="https://processing.org/download/">processing</a> (2.2.1+)
+
+<ul>
+<li><a href="http://www.sojamo.de/libraries/oscP5/">oscP5</a></li>
+<li>
+<a href="http://code.compartmental.net/tools/minim/">minim</a> (for FFTCircles patch)</li>
+<li>processing-java command line (installable from tools menu in processing ide)</li>
+</ul>
+</li>
+<li>screen (optional, can just run webserver in the background using &amp;)</li>
+</ul><h1>
+<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>how to use</h1>
+
+<p>These directions assume both the node.js webserver server and processing are running on the same machine. </p>
+
+<ul>
+<li>check the ip address (you'll need that soon) <code>ifconfig</code>
+</li>
+<li>clone the repo using
+<code>git clone https://github.com/humanwireio/eyeCandy/</code>
+</li>
+<li>start the node server</li>
+</ul><pre><code>cd eyeCandy;
+screen -d -m node webserver/server.js
+</code></pre>
+
+<ul>
+<li>start processing</li>
+</ul><pre><code>processing-java viz/viz.pde
+</code></pre>
+
+<p>Done setting up now lets use it!</p>
+
+<ul>
+<li>Type the ip address of the computer running the node server in a browser on any device capable of pinging that computer (probably on the local network).</li>
+<li>As you navigate the pages you should see the image change in processing. </li>
+</ul><h1>
+<a name="contributing-and-bugs" class="anchor" href="#contributing-and-bugs"><span class="octicon octicon-link"></span></a>contributing and bugs</h1>
+
+<p>Feel free to make pull requests or drop a line to <a href="mailto://humanwire.io@gmail.com">humanwire.io@gmail.com</a> regarding this code. I plan to work on standardizing the osc addresses to work for any patch, cleaning up the folder structure, and creating a config file and parser. I'll also be updating some webcam code to create an example of a patch generated from a cam.</p>
+
+<h1>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>credits</h1>
+
+<ul>
+<li><a href="https://github.com/TheAlphaNerd/node-osc-kontrol">node-osc-kontrol</a></li>
+<li><a href="http://www.amazon.com/Mathographics-Robert-Dixon/dp/B00AK2VKNO/ref=sr_1_1?ie=UTF8&amp;qid=1408638440&amp;sr=8-1&amp;keywords=mathographics">mathographics</a></li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/humanwireio">humanwireio</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-54088807-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
