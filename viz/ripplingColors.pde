@@ -31,6 +31,7 @@ class ripplingColors extends patch{
     oscP5.plug(this,"update_blue_weight","/1/fader3");
     oscP5.plug(this,"update_deform","/1/fader4");
     oscP5.plug(this,"update_roundedness","/1/fader5");
+
   }
   
   void render(){
@@ -64,31 +65,32 @@ class ripplingColors extends patch{
     }
   }
   
-//void update_red_weight(float f) {
-//  red_weight = f;
-//  println("red weight: " + str(red_weight));
-//}
-
-void update_red_weight(int i) {
-  red_weight = i*2;
-  println("updating red weight to " + str(red_weight)); 
-}
-
-//void update_green_weight(float f) {
-//  green_weight = f;  
-//}
-
-void update_green_weight(int i) {
-  green_weight = i*2;
-}
-
-//void update_blue_weight(float f) {
-//  blue_weight = f;  
-//}
-//
-void update_blue_weight(int i) {
-  blue_weight = i*2;
-}
+  //void update_red_weight(float f) {
+  //  red_weight = f;
+  //  println("red weight: " + str(red_weight));
+  //}
+  
+  void update_red_weight(int i) {
+    red_weight = i*2;
+    println("updating red weight to " + str(red_weight)); 
+  }
+  
+  //void update_green_weight(float f) {
+  //  green_weight = f;  
+  //}
+  
+  void update_green_weight(int i) {
+    green_weight = i*2;
+  }
+  
+  //void update_blue_weight(float f) {
+  //  blue_weight = f;  
+  //}
+  //
+  void update_blue_weight(int i) {
+    blue_weight = i*2;
+  }
+  
   void update_deform(int d) {
     deform = int(map(d,0,127,-width, width));
   }
@@ -96,5 +98,6 @@ void update_blue_weight(int i) {
   void update_roundedness(int d) {
     roundedness = int(map(d,0,127,0,.4*displayHeight));
   }
- 
+
 }
+
