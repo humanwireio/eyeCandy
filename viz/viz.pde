@@ -53,6 +53,8 @@ void setup(){
 //  oscP5.plug(this,"update_red_weight","/1/fader1");
 //  oscP5.plug(this,"update_green_weight","/1/fader2");
 //  oscP5.plug(this,"update_blue_weight","/1/fader3");
+
+  noCursor();
 }
 
 void draw(){
@@ -162,4 +164,8 @@ void mouseDragged(){
   println("mouseX: " + mouseX);
   println("mouseY: " + mouseY);
   da.mouseDragged();
+}
+
+boolean sketchFullScreen() {
+  return true;
 }
