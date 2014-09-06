@@ -2,7 +2,7 @@
 
 ![example1](https://raw.githubusercontent.com/humanwireio/eyeCandy/master/exampleImages/example1.png)
 
-
+[more examples](https://plus.google.com/photos/104721511489186364992/albums/5992128100467602545)
 
 
 ###imagine…
