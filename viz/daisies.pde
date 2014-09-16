@@ -3,6 +3,8 @@ class daisies extends patch{
   //Diasies From Mathographics book by Robert Dixon pg 131
   float K = 5;
   float C = 360/222.49;
+  float prevK = 5;
+  float prevC = 360/222.49;
   float D = TWO_PI/C;
   //float D = 74/C;
   float R;
@@ -21,6 +23,7 @@ class daisies extends patch{
   }
 
   void render() {
+    add_randomness();
     pushMatrix();
     stroke(255);
     noFill();
@@ -76,4 +79,17 @@ class daisies extends patch{
   void update_do_colors(float num) {
     do_colors = boolean(int(num));
   }
+
+  void add_randomness(){
+    float amountOfRandomness = .01;
+    if ((C == prevC) && (K == prevK)){
+      C = C + map(random(1), 0, 1, -(amountOfRandomness*20)/2, (amountOfRandomness*20)/2);
+      K = K + map(random(1), 0, 1, -(amountOfRandomness*200)/2, (amountOfRandomness*200)/2);
+      C = constrain(C, 1, 20);
+      K = constrain(K, 10,200);
+    }
+    prevC = C;
+    prevK = K;
+  }
+  
 }

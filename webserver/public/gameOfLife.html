@@ -3,11 +3,9 @@
   <head>
   <meta charset="utf-8">
         <title>ripples3D</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="this is pretty cool isn't it?">
-        <meta name="author" content="Myles Borins">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-      <!-- Le styles -->
+
       <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
@@ -19,12 +17,7 @@
         }
       </style>
 
-      <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-      <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-      <![endif]-->
-  
-      <!-- Le fav and touch icons -->
+      <!-- fav and touch icons -->
         <!-- <link rel="shortcut icon" href="ico/favicon.ico">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
@@ -32,16 +25,24 @@
   </head>
   <body>
   <a href="/" class="btn btn-info">Back to Patches</a>
+  <div>
+    <center>
+      <fieldset class="gameOfLife" data-width="300" data-cols="5" data-height="300" style="display:hidden">
+        <input value=10>
+        <input value=30>
+        <input value=50>
+        <input value=70>
+        <input value=100>
+      </fieldset>
+    </center>
+  </div>
   <div id="patchselect" class="gameOfLife" style="display:none"></div>
   
   <!-- /container -->
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
   <script src="js/third_party/jquery-1.8.2.min.js"></script>
   <script src="js/third_party/jquery.kontrol.js"></script>
   <script src="js/third_party/bootstrap.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="js/node-osc-kontrol.js"></script>
+  <script src="js/node-osc-kontrol-modified.js"></script>
   </body>
 </html>

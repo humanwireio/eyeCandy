@@ -6,6 +6,7 @@ body{
   font-weight: 300;
   text-rendering: optimizelegibility;
 }
+      
 p{font-size: 15px; line-height: 30px}
 div.demo{text-align: center; width: 300px; float: left}
 div.demo > p{font-size: 20px}

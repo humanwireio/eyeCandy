@@ -1,4 +1,4 @@
-  import oscP5.*;
+import oscP5.*;
 import netP5.*;
   
 OscP5 oscP5;
@@ -41,7 +41,7 @@ void setup(){
   rc = new ripplingColors();
   r3D = new rippling3D();
   da = new daisies(this);
-  gol = new gameOfLife();
+  gol = new gameOfLife(this);
   circs = new FFTCircles(this);
   patches.add(rc);
   patches.add(r3D);
@@ -63,6 +63,7 @@ void draw(){
 //  red_weight = int(random(255));
 //  green_weight = int(random(255));
 //  blue_weight = int(random(255));
+  draw_connection_info();
 
   for (int i=0; i<patches.size(); i++){
    if (patch_switch.get(i)){
@@ -72,22 +73,26 @@ void draw(){
    }
   }
 
+  draw_connection_info();
+  
   reset_patch_switch();
   for (int i : dev_patches.values()) {
     patch_switch.set((i-1), true);
   }
-  draw_connection_info();
+  
 }
 
 void draw_connection_info(){
+  String connection_info = "Connect to Wifi: visuals, Go to Address 192.168.1.112 in your browser address bar";
+  int text_size = 24;
   colorMode(RGB,100);
-  fill(0,1);
-  stroke(0,1);
-  rect(0,0,650,50);
+  fill(0,100);
+  stroke(0,100);
+  rect(0,0,connection_info.length()*text_size,2*text_size);
   fill(100,100);
   textAlign(LEFT,TOP);
-  textSize(18);
-  //text("Wifi: visuals, Address: 192.168.1.112",0,0);
+  textSize(text_size);
+  text(connection_info,0,0);
 }
 
 void reset_patch_switch() {
@@ -147,11 +152,13 @@ void oscEvent(OscMessage theOscMessage) {
 }
 
 void timeout_check(){
-  for (String ip : dev_timers.keys()){
-    if ((millis()-dev_timers.get(ip))>10000){
-      dev_timers.remove(ip);
-      dev_patches.remove(ip);
-      println(ip + " timedout");
+  if (dev_patches.size()>1){
+    for (String ip : dev_timers.keys()){
+      if ((millis()-dev_timers.get(ip))>10000){
+        dev_timers.remove(ip);
+        dev_patches.remove(ip);
+        println(ip + " timedout");
+      }
     }
   }
 }
@@ -168,4 +175,8 @@ void mouseDragged(){
 
 boolean sketchFullScreen() {
   return true;
+}
+
+public static void main(String[] args) { 
+  PApplet.main(new String[]{ "--hide-stop", viz.class.getName() });
 }
