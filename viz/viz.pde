@@ -1,23 +1,20 @@
 import oscP5.*;
 import netP5.*;
-  
+import gifAnimation.*;
+import processing.opengl.*;
+
 OscP5 oscP5;
 
 // image dimensions
 final int IMG_WIDTH = 1280;
 final int IMG_HEIGHT = 720;
+//final int IMG_WIDTH = 300;
+//final int IMG_HEIGHT = 300;
 
 //device management
 IntDict dev_timers;
 IntDict dev_patches;
 
-//patches
-//circle circ;
-ripplingColors rc;
-rippling3D r3D;
-daisies da;
-gameOfLife gol;
-FFTCircles circs;
 ArrayList<patch> patches;
 ArrayList<Boolean> patch_switch;
 
@@ -26,34 +23,41 @@ float red_weight = .5;
 float green_weight = .5;
 float blue_weight = .5;
 
+GifMaker gifExport;
+
 void setup(){
-  size(IMG_WIDTH,IMG_HEIGHT, P3D);
+  //size(IMG_WIDTH,IMG_HEIGHT, P3D);
+  size(IMG_WIDTH,IMG_HEIGHT, OPENGL);
   oscP5 = new OscP5(this,12000);
   dev_patches = new IntDict();
   dev_timers = new IntDict();
   patches = new ArrayList<patch>();
   patch_switch = new ArrayList<Boolean>();
  
-  for (int i=0; i < 6; i++) {
+  patches.add(new ripplingColors());
+  patches.add(new rippling3D());
+  patches.add(new daisies(this));
+  patches.add(new gameOfLife(this));
+  patches.add(new FFTCircles(this));
+  patches.add(new automata());
+  patches.add(new circleFlasher(this));
+  //patches.add(new camBlobs(this));
+ 
+  int num_of_patches = patches.size();
+  for (int i=0; i < num_of_patches; i++) {
     patch_switch.add(false);
   }
-  patch_switch.set(3,true);
-  rc = new ripplingColors();
-  r3D = new rippling3D();
-  da = new daisies(this);
-  gol = new gameOfLife(this);
-  circs = new FFTCircles(this);
-  patches.add(rc);
-  patches.add(r3D);
-  patches.add(da);
-  patches.add(gol);
-  patches.add(circs);
- 
+  patch_switch.set(num_of_patches-1,true);
+  
   oscP5.plug(this,"pinged","/ping");
 //  oscP5.plug(this,"update_red_weight","/1/fader1");
 //  oscP5.plug(this,"update_green_weight","/1/fader2");
 //  oscP5.plug(this,"update_blue_weight","/1/fader3");
 
+  gifExport = new GifMaker(this, "export.gif");
+  gifExport.setRepeat(0); // make it an "endless" animation
+  gifExport.setTransparent(0,0,0); // make black the transparent color. every black pixel in the animation will be transparent
+  
   noCursor();
 }
 
@@ -63,23 +67,26 @@ void draw(){
 //  red_weight = int(random(255));
 //  green_weight = int(random(255));
 //  blue_weight = int(random(255));
-  draw_connection_info();
+  //draw_connection_info();
 
   for (int i=0; i<patches.size(); i++){
    if (patch_switch.get(i)){
-     //println(patch_switch);
+     //println("i'm here");
+     println(patch_switch);
      patch p = patches.get(i);
      p.render(); 
    }
   }
 
-  draw_connection_info();
+  //draw_connection_info();
   
   reset_patch_switch();
   for (int i : dev_patches.values()) {
     patch_switch.set((i-1), true);
   }
-  
+ 
+  //gifExport.setDelay(1);
+  //gifExport.addFrame(); 
 }
 
 void draw_connection_info(){
@@ -154,7 +161,7 @@ void oscEvent(OscMessage theOscMessage) {
 void timeout_check(){
   if (dev_patches.size()>1){
     for (String ip : dev_timers.keys()){
-      if ((millis()-dev_timers.get(ip))>10000){
+      if ((millis()-dev_timers.get(ip))>100000){
         dev_timers.remove(ip);
         dev_patches.remove(ip);
         println(ip + " timedout");
@@ -170,7 +177,11 @@ void pinged(String ip){
 void mouseDragged(){
   println("mouseX: " + mouseX);
   println("mouseY: " + mouseY);
-  da.mouseDragged();
+  for (int i=0; i<patch_switch.size(); i++){
+    if (patch_switch.get(i)){
+      patches.get(i).mouseDragged();
+    }
+  }
 }
 
 boolean sketchFullScreen() {
@@ -179,4 +190,9 @@ boolean sketchFullScreen() {
 
 public static void main(String[] args) { 
   PApplet.main(new String[]{ "--hide-stop", viz.class.getName() });
+}
+
+void keyPressed() {
+  println("stopping export");
+  gifExport.finish();
 }

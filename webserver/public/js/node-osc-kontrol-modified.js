@@ -39,11 +39,44 @@ var oscControl = oscControl || {};
         }
     });
 
+    oscControl.circFlash = $(".circFlash");//
+    oscControl.circFlash.css("border","5px solid white");
+    oscControl.circFlash.xy({
+        displayPrevious: true,
+        min: 0,
+        max: 127,
+        width: screen.width,
+        height: screen.height-100,
+        fgColor: "#3299B7",
+        bgColor: "rgba(0,0,0,5)",
+        change: function (values) {
+            oscControl.socket.emit('circflash', values);
+        }
+    });
+
+    oscControl.camBlobs = $(".camBlobs");//
+    oscControl.camBlobs.css("border","5px solid white");
+    oscControl.camBlobs.xy({
+        displayPrevious: true,
+        min: 0,
+        max: 127,
+        width: screen.width,
+        height: screen.height-100,
+        fgColor: "#3299B7",
+        bgColor: "rgba(0,0,0,5)",
+        change: function (values) {
+            oscControl.socket.emit('camBlobs', values);
+        }
+    });
+
+
     oscControl.gameOfLife = $(".gameOfLife");//
     oscControl.gameOfLife.xy({
         displayPrevious: true,
         min: 0,
         max: 127,
+        width: screen.width,
+        height: screen.height-100,
         fgColor: "#3299B7",
         bgColor: "rgba(0,0,0,.5)",
         change: function (values) {
@@ -51,6 +84,22 @@ var oscControl = oscControl || {};
         }
     });
 
+    oscControl.ripples3D = $(".ripples3D");//
+    oscControl.ripples3D.xy({
+        displayPrevious: true,
+        min: 0,
+        max: 127,
+        width: screen.width,
+        height: screen.height-100,
+        fgColor: "#3299B7",
+        bgColor: "rgba(0,0,0,.5)",
+        change: function (values) {
+            oscControl.socket.emit('ripples3D', values);
+        }
+    });
+
+    $('#patchselect').parent().hide();
+    
 }(jQuery));
 
 setInterval(function(){

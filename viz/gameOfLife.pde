@@ -1,6 +1,7 @@
 class gameOfLife extends patch {
 
   boolean[][] cells;
+  boolean[][] last_cells;
   int[][] neighbors;
   int[] size_of_cell = new int[2];
   int[] cells_size = {
@@ -9,33 +10,38 @@ class gameOfLife extends patch {
   int num_of_cells;
   private PApplet app;
   int evolve_every_n_renders;
-
+  float rand_coeff = .5;
+  
   gameOfLife(PApplet app) {
     this.app = app;
     size_of_cell[0] = int(width/cells_size[0]);
     size_of_cell[1] = int(height/cells_size[1]);
     num_of_cells = cells_size[0] * cells_size[1]; 
     cells = new boolean[cells_size[0]][cells_size[1]];
+    last_cells = cells;
     neighbors = new int[cells_size[0]][cells_size[1]];
-    randomize(1);
+    randomize(1,1);
     evolve_every_n_renders = 1;
 
     oscP5.plug(this, "randomize", "/4/toggle1");
     oscP5.plug(this, "glider", "/4/toggle2");
-    oscP5.plug(this, "evolveEvery", "/4/evolveEvery");
+    oscP5.plug(this, "xyPad", "/4/xy");
+    //oscP5.plug(this, "evolveEvery", "/4/evolveEvery");
   }
 
   void render() {
-    if (all_dead()) {
-      randomize(1);
+    println(last_cells==cells);
+    println("updateevery=" + str(evolve_every_n_renders));
+    if (all_dead() | (last_cells==cells) | all_alive()) {
+      println("randomizing");
+      randomize(rand_coeff, 1);
     }
     rectMode(CENTER);
     for (int i = 0; i< cells_size[0]; i++) {
       for (int j = 0; j < cells_size[1]; j++) {
         if (cells[i][j]) {
           fill(255);
-        } 
-        else {
+        } else {
           fill(0);
         }
 
@@ -52,7 +58,7 @@ class gameOfLife extends patch {
     }
   }
 
-  private boolean all_dead() {
+  boolean all_dead() {
     boolean all_dead = false;
     for (int i=0; i < cells_size[0]; i++) {
       for (int j=0; j < cells_size[1]; j++) {
@@ -61,8 +67,18 @@ class gameOfLife extends patch {
     } 
     return all_dead;
   }
+  
+  boolean all_alive() {
+    boolean all_alive = true;
+    for (int i=0; i < cells_size[0]; i++) {
+      for (int j=0; j < cells_size[1]; j++) {
+        all_alive = all_alive & cells[i][j];
+      }
+    } 
+    return all_alive;
+  }
 
-  private int num_of_neighbors(int i, int j) {
+  int num_of_neighbors(int i, int j) {
     int num = 0;
     int[][] neigh_pos = {
       //{-1,-1},
@@ -117,21 +133,19 @@ class gameOfLife extends patch {
       for (int j = 0; j < cells_size[1]; j++) {
         if (neighbors[i][j] < 2) {
           cells[i][j] = false;
-        } 
-        else if (neighbors[i][j] > 3) {
+        } else if (neighbors[i][j] > 3) {
           cells[i][j] = false;
-        } 
-        else if (neighbors[i][j] == 3) {
+        } else if (neighbors[i][j] == 3) {
           cells[i][j] = true;
         }
       }
     }
   }
 
-  void randomize(float f) {
+  void randomize(float f, float coeff) {
     for (int i = 0; i < cells_size[0]; i++) {
       for (int j = 0; j < cells_size[1]; j++) {
-        cells[i][j] = random(1) < (f*.5 + .25);
+        cells[i][j] = random(coeff) < (f*.5 + .25);
       }
     }
   }
@@ -150,6 +164,11 @@ class gameOfLife extends patch {
     while (millis () - time <= delay);
   }
 
+  void xyPad(int x, int y){
+    evolveEvery(int(map(x, 0, 127, 1, 50)));
+    rand_coeff = map(x, 0, 127, .01, 1);
+  }
+  
   void evolveEvery(int num_of_renders) {
     evolve_every_n_renders = num_of_renders;
   }

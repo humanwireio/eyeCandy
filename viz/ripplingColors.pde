@@ -3,17 +3,11 @@ class ripplingColors extends patch{
   float[] wave;
   float[] waveColor;
   float len;
-//  int red_weight;
-//  int green_weight;
-//  int blue_weight;
   int deform; 
   char drawShape;
   int roundedness;
     
   ripplingColors(){
-//    red_weight = 1;
-//    green_weight = 1;
-//    blue_weight = 1;
     deform = 0;
     drawShape = 'r';
     roundedness = 0;
@@ -64,29 +58,16 @@ class ripplingColors extends patch{
       a[0] = val;
     }
   }
-  
-  //void update_red_weight(float f) {
-  //  red_weight = f;
-  //  println("red weight: " + str(red_weight));
-  //}
-  
+    
   void update_red_weight(int i) {
     red_weight = i*2;
     println("updating red weight to " + str(red_weight)); 
   }
   
-  //void update_green_weight(float f) {
-  //  green_weight = f;  
-  //}
-  
   void update_green_weight(int i) {
     green_weight = i*2;
   }
-  
-  //void update_blue_weight(float f) {
-  //  blue_weight = f;  
-  //}
-  //
+
   void update_blue_weight(int i) {
     blue_weight = i*2;
   }

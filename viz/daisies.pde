@@ -1,6 +1,13 @@
+import ddf.minim.analysis.*;
+import ddf.minim.*;
 
 class daisies extends patch{
-  //Diasies From Mathographics book by Robert Dixon pg 131
+
+  Minim minim;
+  AudioInput in;
+  BeatDetect beat;
+  float beatScaleFactor = 0; //varies from 0-1  
+  //Daisies From Mathographics book by Robert Dixon pg 131
   float K = 5;
   float C = 360/222.49;
   float prevK = 5;
@@ -11,9 +18,15 @@ class daisies extends patch{
   float RR = 5;
   private PApplet app;
   boolean do_colors = false;
+  float amount_of_randomness = .01;
   
   daisies(PApplet app){
     this.app = app;
+    //sound setup
+    minim = new Minim(app);
+    in = minim.getLineIn(Minim.STEREO, 512);
+    beat = new BeatDetect();
+    
     //fill(255);
     //oscP5.plug(this,"updateK","/1/fader1");
     //oscP5.plug(this,"updateC","/1/fader2");
@@ -24,6 +37,8 @@ class daisies extends patch{
 
   void render() {
     add_randomness();
+    beat.detect(in.mix);
+    add_beat_influence();
     pushMatrix();
     stroke(255);
     noFill();
@@ -81,15 +96,45 @@ class daisies extends patch{
   }
 
   void add_randomness(){
-    float amountOfRandomness = .01;
-    if ((C == prevC) && (K == prevK)){
-      C = C + map(random(1), 0, 1, -(amountOfRandomness*20)/2, (amountOfRandomness*20)/2);
-      K = K + map(random(1), 0, 1, -(amountOfRandomness*200)/2, (amountOfRandomness*200)/2);
+    if ((C == prevC) && (K == prevK) && (random(3)>1)){
+      C = C + map(random(1), 0, 1, -(amount_of_randomness*20)/2, (amount_of_randomness*20)/2);
+      K = K + map(random(1), 0, 1, -(amount_of_randomness*200)/2, (amount_of_randomness*200)/2);
       C = constrain(C, 1, 20);
       K = constrain(K, 10,200);
+      amount_of_randomness = amount_of_randomness * (1+random(0.15));
+      amount_of_randomness = constrain(amount_of_randomness, 0, 1);
+      add_beat_influence();
+    } else {
+      amount_of_randomness = .008;
     }
     prevC = C;
     prevK = K;
   }
-  
+ 
+  void add_beat_influence(){
+    float scaleAdjust = 0;
+    if (beat.isOnset()){
+       scaleAdjust--;
+    } 
+    
+    if (beat.isKick()){
+      scaleAdjust++;
+    }
+    
+    if (beat.isSnare()){
+      scaleAdjust--;
+    }
+    
+    if (beat.isHat()){
+      scaleAdjust++;
+    }
+    
+    beatScaleFactor = beatScaleFactor*.5 + scaleAdjust*.5 + .1;
+    float beatScaleOffset = 1;
+    //println("beatScaleFactor = " + beatScaleFactor);
+    K = constrain((beatScaleFactor+beatScaleOffset) * K, 10, 200);
+    C = constrain((beatScaleFactor+beatScaleOffset) * C, 1, 20);
+    prevC = C;
+    prevK = K;
+  } 
 }

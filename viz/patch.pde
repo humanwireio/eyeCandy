@@ -7,5 +7,8 @@ class patch {
  void render(){
    
  }
+ 
+ void mouseDragged(){
+ }
   
 }
