@@ -8,6 +8,8 @@ class FFTCircles extends patch{
   FFT fft;
   String windowName;
   private PApplet app;
+  int opacity = 30;
+  float stroke_factor = 2;
   
   FFTCircles(PApplet app){
     this.app = app;
@@ -16,13 +18,15 @@ class FFTCircles extends patch{
     in = minim.getLineIn(Minim.STEREO, 512);
     fft = new FFT(in.bufferSize(), in.sampleRate());
     windowName = "None";
+    oscP5.plug(this,"update","/4/xy");
   }
   
   void render(){
+    pushStyle();
     colorMode(RGB, 255);
-    stroke(random(red_weight),random(green_weight),random(blue_weight), 30);
+    stroke(random(red_weight),random(green_weight),random(blue_weight), opacity);
     int CircleThickness = 4;
-    strokeWeight(2*CircleThickness);
+    strokeWeight(stroke_factor*CircleThickness);
     noFill();
     // perform a forward FFT on the samples in jingle's left buffer
     // note that if jingle were a MONO file, 
@@ -37,6 +41,12 @@ class FFTCircles extends patch{
         ellipse(int(width/2), int(height/2),i*CircleThickness,i*CircleThickness);
       }
     }
+    popStyle();
+  }
+  
+  void update(int x, int y) {
+    opacity = int(map(x, 0, 127, 1, 200));
+    stroke_factor = map(y, 0, 127, 0.2, 20);
   }
   
 }

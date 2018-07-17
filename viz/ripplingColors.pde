@@ -6,7 +6,8 @@ class ripplingColors extends patch{
   int deform; 
   char drawShape;
   int roundedness;
-    
+  float randomness = 50;
+  
   ripplingColors(){
     deform = 0;
     drawShape = 'r';
@@ -20,18 +21,20 @@ class ripplingColors extends patch{
       wave[i] = abs(cos(amount));
       waveColor[i] = 0;
     }
-    oscP5.plug(this,"update_red_weight","/1/fader1");
-    oscP5.plug(this,"update_green_weight","/1/fader2");
-    oscP5.plug(this,"update_blue_weight","/1/fader3");
-    oscP5.plug(this,"update_deform","/1/fader4");
-    oscP5.plug(this,"update_roundedness","/1/fader5");
+    oscP5.plug(this,"update_red_weight","/0/fader1");
+    oscP5.plug(this,"update_green_weight","/0/fader2");
+    oscP5.plug(this,"update_blue_weight","/0/fader3");
+    oscP5.plug(this,"update_deform","/0/fader4");
+    oscP5.plug(this,"update_roundedness","/0/fader5");
 
   }
   
   void render(){
     pushMatrix();
+    pushStyle();
     colorMode(RGB,255);
     noFill();
+    deform = int(deform + random(-randomness, randomness));
     translate(IMG_WIDTH/2, IMG_HEIGHT/2);
     int stepSize = 3;
     for (int i = 0; i < int(len); i+=stepSize) {
@@ -49,6 +52,7 @@ class ripplingColors extends patch{
     }
     shiftAndAdd(wave,wave[int(len)-1],10);
     popMatrix();
+    popStyle();
   }
   
   void shiftAndAdd(float a[], float val, int numOfShifts){
@@ -81,4 +85,3 @@ class ripplingColors extends patch{
   }
 
 }
-

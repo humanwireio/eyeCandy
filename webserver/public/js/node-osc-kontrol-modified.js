@@ -2,12 +2,40 @@
 
 var oscControl = oscControl || {};
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 (function ($) {
     'use strict';
+    const patch_index = getParameterByName('index')
     oscControl.socket = io.connect();
     //set patch
     oscControl.socket.emit('patchselect', $('#patchselect')[0].className)
-    
+
+    oscControl.fader = $(".fader")
+    oscControl.fader.css("border", "5px solid white")
+    oscControl.fader.bars({
+        displayPrevious: true,
+        min: 0,
+        max: 127,
+        fgColor: "#222222",
+        bgColor: "#0000FF",
+        width: screen.width,
+        height: screen.height-100,
+        cursor: 40,
+        change: function (values) {
+            patch_list[getParameterByName('index')]
+            oscControl.socket.emit('', values);
+        }
+    });
+
     oscControl.ripplingColors = $(".ripplingColors");//
     oscControl.ripplingColors.css("border","5px solid white");
     oscControl.ripplingColors.bars({
@@ -50,7 +78,22 @@ var oscControl = oscControl || {};
         fgColor: "#3299B7",
         bgColor: "rgba(0,0,0,5)",
         change: function (values) {
-            oscControl.socket.emit('circflash', values);
+            oscControl.socket.emit('circFlash', values);
+        }
+    });
+
+    oscControl.circs = $(".circs");//
+    oscControl.circs.css("border","5px solid white");
+    oscControl.circs.xy({
+        displayPrevious: true,
+        min: 0,
+        max: 127,
+        width: screen.width,
+        height: screen.height-100,
+        fgColor: "#3299B7",
+        bgColor: "rgba(0,0,0,5)",
+        change: function (values) {
+            oscControl.socket.emit('circs', values);
         }
     });
 
@@ -99,7 +142,7 @@ var oscControl = oscControl || {};
     });
 
     $('#patchselect').parent().hide();
-    
+
 }(jQuery));
 
 setInterval(function(){

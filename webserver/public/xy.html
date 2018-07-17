@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+        <title>daisies</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+      <style>
+        body {
+          padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+          background-image: url("/img/daisiesBackground.jpg");
+          background-size: 100%;
+          width: 100vw;
+          height: 100vh;
+        }
+      </style>
+
+
+      <!-- Le fav and touch icons -->
+        <!-- <link rel="shortcut icon" href="ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png"> -->
+  </head>
+  <body>
+    <div style="border: 3px solid #444444;">
+        <center>
+          <p style="color:#FFFFFF">Touch Below to control the pattern similar to the background</p>
+          <fieldset class="daisies" style="color:white; border: 10px solid white; background-color:#444444;">
+              x : <input name="x" value=27>
+              y : <input name="y" value=80>
+          </fieldset>
+        </center>
+    </div>
+    <div id="patchselect" class="daisies" style="display:none"></div>
+
+    <!-- /container -->
+    <script src="js/third_party/jquery-1.8.2.min.js"></script>
+    <script src="js/third_party/jquery.kontrol.js"></script>
+    <script src="js/third_party/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/node-osc-kontrol-modified.js"></script>
+  </body>
+</html>

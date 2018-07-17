@@ -11,6 +11,7 @@ class gameOfLife extends patch {
   private PApplet app;
   int evolve_every_n_renders;
   float rand_coeff = .5;
+  float skip_coeff = .4;
   
   gameOfLife(PApplet app) {
     this.app = app;
@@ -23,10 +24,10 @@ class gameOfLife extends patch {
     randomize(1,1);
     evolve_every_n_renders = 1;
 
-    oscP5.plug(this, "randomize", "/4/toggle1");
-    oscP5.plug(this, "glider", "/4/toggle2");
-    oscP5.plug(this, "xyPad", "/4/xy");
-    //oscP5.plug(this, "evolveEvery", "/4/evolveEvery");
+    oscP5.plug(this, "randomize", "/2/toggle1");
+    oscP5.plug(this, "glider", "/2/toggle2");
+    oscP5.plug(this, "xyPad", "/2/xy");
+    //oscP5.plug(this, "evolveEvery", "/2/evolveEvery");
   }
 
   void render() {
@@ -39,10 +40,11 @@ class gameOfLife extends patch {
     rectMode(CENTER);
     for (int i = 0; i< cells_size[0]; i++) {
       for (int j = 0; j < cells_size[1]; j++) {
+        if (random(1) < skip_coeff){ continue; }
         if (cells[i][j]) {
-          fill(255);
+          fill(color(255, 30));
         } else {
-          fill(0);
+          fill(color(0, 30));
         }
 
         int xpos = i * size_of_cell[0];
@@ -167,10 +169,10 @@ class gameOfLife extends patch {
   void xyPad(int x, int y){
     evolveEvery(int(map(x, 0, 127, 1, 50)));
     rand_coeff = map(x, 0, 127, .01, 1);
+    skip_coeff = map(y, 0, 127, .01, 1);
   }
   
   void evolveEvery(int num_of_renders) {
     evolve_every_n_renders = num_of_renders;
   }
 }
-

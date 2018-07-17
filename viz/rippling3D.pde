@@ -35,6 +35,7 @@ class rippling3D extends patch{
   
   void render(){
     pushMatrix();
+    pushStyle();
     colorMode(RGB,255);
     noFill();
     translate(IMG_WIDTH/2, IMG_HEIGHT/2);
@@ -52,6 +53,7 @@ class rippling3D extends patch{
     }
     shiftAndAdd(wave,wave[int(len)-1],10);
     popMatrix();
+    popStyle();
   }
   
   void shiftAndAdd(float a[], float val, int numOfShifts){

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
         <title>eyeCandy</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    	
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
@@ -16,7 +16,7 @@
             background-size: 100%;
       	}
     	</style>
-
+      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.core.min.js'></script>
     	<!-- fav and touch icons -->
         <!-- <link rel="shortcut icon" href="ico/favicon.ico">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
@@ -26,34 +26,25 @@
     <center>
         <h1>eyeCandy</h1>
         <h2>Patches</h2>
-        <div class="container">
-          <div class="row">
-            <a href="ripplingColors.html" class="btn btn-info">
-                <img src="/img/ripplingColorsButton.jpg">
-            </a>
-            <a href="daisies.html" class="btn btn-info">
-                <img src="/img/daisiesButton.jpg">
-            </a>
-            <a href="gameOfLife.html" class="btn btn-info">
-                <img src="/img/gameOfLifeButton.jpg">
-            </a>
-            <a href="ripples3D.html" class="btn btn-info">
-                <img src="/img/ripples3DButton.jpg">
-            </a>
-            <a href="circs.html" class="btn btn-info">
-                <img src="/img/circsButton.jpg">
-            </a>
-            <a href="circFlash.html" class="btn btn-info">
-                <img src="/img/circFlashButton.jpg">
-            </a>
-            <a href="camBlobs.html" class="btn btn-info">
-                <img src="/img/camBlobsButton.jpg">
-            </a>
-          </div>
-          <br>
+        <div id='container' class="container">
         </div>
 
     </center>
+    <script type='text/javascript' src='/patch_list.js'></script>
+    <script type='text/javascript'>
+        const container = document.getElementById('container')
+        _.forEach(patch_list, p => {
+          if (p.url && p.image) {
+            const a = document.createElement('a')
+            a.href = p.url
+            a.class = "btn btn-info"
+            const img = document.createElement('img')
+            img.src = p.image
+            a.appendChild(img)
+            container.appendChild(a)
+          }
+        })
+    </script>
 
     <div id="patchselect" class="off" style="display:none"></div>
 	<!-- /container -->

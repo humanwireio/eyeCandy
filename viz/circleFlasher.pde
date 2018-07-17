@@ -14,7 +14,7 @@ class circleFlasher extends patch {
      curY = 0;
      prevX = 0;
      prevY = 0;
-     oscP5.plug(this,"update","/7/xy");
+     oscP5.plug(this,"update","/5/xy");
    }
    
    void render(){
@@ -29,7 +29,7 @@ class circleFlasher extends patch {
       ellipse(drawX, drawY, 50*i,50*i);
       //rect(drawX, drawY, 50*i,50*i);
     }
-    popMatrix();   
+    popMatrix();
    }
    
     void update(int x, int y) {

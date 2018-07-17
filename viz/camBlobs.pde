@@ -1,33 +1,21 @@
-/**
-import gab.opencv.*;
-import processing.video.*;
-import java.awt.*;
-
 class camBlobs extends patch {
  
   private PApplet app;
-  Capture video;
-  OpenCV opencv;
   PImage cur, prev;
-  int X, Y;
+  int X, Y, thresh, opac;
   
   camBlobs(PApplet app){
-    String[] cameras = Capture.list();
-    String cam_name = "Sirius USB2.0 Camera #3";
-    println(str(cameras.length) + " cameras found"); 
-    this.app = app;
-    video = new Capture(this.app, 640, 480, cam_name);
-    opencv = new OpenCV(this.app, 640, 480);
-    //opencv.startBackgroundSubtraction(5, 3, 0.5);
-    video.start();
     prev = opencv.getSnapshot();
-    oscP5.plug(this,"update","/8/xy");
-    X = int(random(255));
-    Y = int(random(255)); 
+    oscP5.plug(this,"update","/6/xy");
+    X = 125;
+    Y = 125; 
+    thresh = 100; 
+    opac = 125; 
     //println(Capture.list());
   }
   
   void render(){
+    pushStyle();
     opencv.loadImage(video);
     cur = opencv.getSnapshot();
     opencv.diff(prev);
@@ -39,14 +27,20 @@ class camBlobs extends patch {
     opencv.dilate();
     //opencv.loadImage(video);
     imageMode(CENTER);
-    tint(255,125);
-    image(opencv.getSnapshot(), 0,0, width*2, height*2 );
+    opencv.threshold(thresh);
+    tint(255, opac);
+    opencv.flip(1);
+    image(opencv.getSnapshot(), 0,0, width*2, height*2);
     prev = cur;
+    popStyle();
   }
   
   void update(int x, int y){
-    X = x;
-    Y = y;    
+    println("updating camblobs");
+    println(x);
+    println(y);
+    thresh = int(map(y, 0, 127, 10, 255));
+    opac = int(map(x, 0, 127, 10, 255));
   }
   
   void mouseDragged(){
@@ -54,4 +48,3 @@ class camBlobs extends patch {
     Y = mouseY;
   }
 }
-**/

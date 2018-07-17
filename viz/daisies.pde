@@ -18,7 +18,7 @@ class daisies extends patch{
   float RR = 5;
   private PApplet app;
   boolean do_colors = false;
-  float amount_of_randomness = .01;
+  float amount_of_randomness = .05;
   
   daisies(PApplet app){
     this.app = app;
@@ -30,9 +30,9 @@ class daisies extends patch{
     //fill(255);
     //oscP5.plug(this,"updateK","/1/fader1");
     //oscP5.plug(this,"updateC","/1/fader2");
-    oscP5.plug(this,"update","/3/xy");
-    oscP5.plug(this,"update_do_colors","/3/toggle1");
-    oscP5.plug(this,"updateD","/1/fader1");
+    oscP5.plug(this,"update","/1/xy");
+    //oscP5.plug(this,"update_do_colors","/3/toggle1");
+    oscP5.plug(this,"updateD","/0/fader1");
   }
 
   void render() {
@@ -40,7 +40,6 @@ class daisies extends patch{
     beat.detect(in.mix);
     add_beat_influence();
     pushMatrix();
-    stroke(255);
     noFill();
     colorMode(HSB, 200);
     float H = 0;
@@ -56,7 +55,7 @@ class daisies extends patch{
         stroke(color_num,200,color_num);
       } else {
         //noFill();
-        stroke(H,50);
+        stroke(H,25);
       }
       H = H + C;
       ellipse(0,0,int(X),int(Y));
