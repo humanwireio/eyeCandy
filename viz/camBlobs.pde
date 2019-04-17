@@ -31,6 +31,7 @@ class camBlobs extends patch {
     tint(255, opac);
     opencv.flip(1);
     image(opencv.getSnapshot(), 0,0, width*2, height*2);
+    //image(opencv.getSnapshot(), 0,0, width, height);
     prev = cur;
     popStyle();
   }

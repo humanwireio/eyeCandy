@@ -13,10 +13,17 @@ import java.awt.*;
 Capture video;
 OpenCV opencv;
 
-String cam_name = "FaceTime HD Camera (Built-in)";
+import ddf.minim.analysis.*;
+import ddf.minim.*;
+
+Minim minim;
+AudioInput in;
+  
+//String cam_name = "FaceTime HD Camera (Built-in)";
 //String cam_name = "Vimicro USB2.0 PC Camera #6";
 //String cam_name = "Sirius USB2.0 Camera #2";
 //String cam_name = "USB 2.0 Camera #2";
+String cam_name = "HD USB Camera";
 
 OscP5 oscP5;
 
@@ -53,9 +60,14 @@ void setup(){
   oscP5 = new OscP5(this,12000);
 
   video = new Capture(this, 640, 480, cam_name);
+  
+  //video = new Capture(this, 1280, 960, cam_name);
   opencv = new OpenCV(this, 640, 480);
   video.start();
   
+  minim = new Minim(this);
+  in = minim.getLineIn(Minim.STEREO, 512);
+    
   dev_patches = new IntDict();
   dev_timers = new IntDict();
   patches = new ArrayList<patch>();

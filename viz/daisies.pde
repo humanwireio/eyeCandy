@@ -1,10 +1,5 @@
-import ddf.minim.analysis.*;
-import ddf.minim.*;
-
 class daisies extends patch{
 
-  Minim minim;
-  AudioInput in;
   BeatDetect beat;
   float beatScaleFactor = 0; //varies from 0-1  
   //Daisies From Mathographics book by Robert Dixon pg 131
@@ -22,9 +17,6 @@ class daisies extends patch{
   
   daisies(PApplet app){
     this.app = app;
-    //sound setup
-    minim = new Minim(app);
-    in = minim.getLineIn(Minim.STEREO, 512);
     beat = new BeatDetect();
     
     //fill(255);
@@ -40,6 +32,7 @@ class daisies extends patch{
     beat.detect(in.mix);
     add_beat_influence();
     pushMatrix();
+    pushStyle();
     noFill();
     colorMode(HSB, 200);
     float H = 0;
@@ -63,6 +56,7 @@ class daisies extends patch{
       A = A + D;
     }
     popMatrix();
+    popStyle();
   }
   
   void mouseDragged(){

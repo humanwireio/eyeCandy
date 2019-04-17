@@ -1,7 +1,5 @@
 class MoveVol extends patch{
 
-  Minim       minim;
-  AudioInput in;
   BeatDetect beat;
   int numPixels;
   int[] previousFrame;
@@ -10,8 +8,6 @@ class MoveVol extends patch{
   
   MoveVol(PApplet app) {
     this.app = app;
-    minim = new Minim(this);
-    in = minim.getLineIn(Minim.STEREO, 512);
     beat = new BeatDetect();
   
     // This the default video input, see the GettingStartedCapture 

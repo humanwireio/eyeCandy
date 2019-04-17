@@ -21,7 +21,7 @@ class circleFlasher extends patch {
     pushMatrix();
     //translate(width/2, height/2);
     //background(random(255),random(255),random(255),random((delX^2 + delY^2)));
-    for (int i=50; i>0; i--){
+    for (int i=25; i>0; i--){
       drawX = (drawX + delX)%width;
       drawY = (drawY + delY)%height;
       //fill(random(255), random(255), random(255), random(25));

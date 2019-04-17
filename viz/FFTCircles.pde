@@ -1,10 +1,5 @@
-import ddf.minim.analysis.*;
-import ddf.minim.*;
-
 class FFTCircles extends patch{
   
-  Minim minim;
-  AudioInput in;
   FFT fft;
   String windowName;
   private PApplet app;
@@ -14,8 +9,6 @@ class FFTCircles extends patch{
   FFTCircles(PApplet app){
     this.app = app;
     //sound setup
-    minim = new Minim(app);
-    in = minim.getLineIn(Minim.STEREO, 512);
     fft = new FFT(in.bufferSize(), in.sampleRate());
     windowName = "None";
     oscP5.plug(this,"update","/4/xy");
