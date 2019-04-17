@@ -1,17 +1,19 @@
+const lodash = require('lodash');
+
 var app = require('express')()
     , server = require('http').createServer(app)
     , io = require('socket.io').listen(server)
     , osc = require('node-osc')
     , client = new osc.Client('127.0.0.1', 12000);
 
-server.listen(80);
+server.listen(8080);
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.get('/*.(js|css|jpg|html)', function(req, res){
-  res.sendfile("./public"+req.url);
+  res.sendFile(__dirname + "/public" + req.url);
 });
 
 io.sockets.on('connection', function (socket) {
@@ -34,8 +36,8 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('patchselect', function(patchName) {
-        var ip  = socket.handshake.address['address'];
-        console.log(ip);
+        var ip  = socket.handshake.address;
+        console.log('ip:', ip);
         if (patchName == "ripplingColors")
             {client.send("/1", ip)}
         else if (patchName == "daisies")

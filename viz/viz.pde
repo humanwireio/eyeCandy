@@ -27,7 +27,8 @@ float green_weight = .5;
 float blue_weight = .5;
 
 void setup(){
-  size(IMG_WIDTH,IMG_HEIGHT, P3D);
+  //size(IMG_WIDTH,IMG_HEIGHT, P3D);
+  fullScreen();
   oscP5 = new OscP5(this,12000);
   dev_patches = new IntDict();
   dev_timers = new IntDict();
@@ -164,8 +165,4 @@ void mouseDragged(){
   println("mouseX: " + mouseX);
   println("mouseY: " + mouseY);
   da.mouseDragged();
-}
-
-boolean sketchFullScreen() {
-  return true;
 }

@@ -100,4 +100,3 @@ class ripplingColors extends patch{
   }
 
 }
-
