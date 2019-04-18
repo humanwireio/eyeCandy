@@ -6,7 +6,7 @@ class ripplingColors extends patch{
   int deform; 
   char drawShape;
   int roundedness;
-  float randomness = 50;
+  float randomness = 75;
   
   ripplingColors(){
     deform = 0;

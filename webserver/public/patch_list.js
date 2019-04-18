@@ -42,18 +42,42 @@ const patch_list = {
    image: '/img/circFlashButton.jpg',
    index: 5
   },
-  camBlobs: {
-   control_type: 'xy',
-   url: 'camBlobs.html',
-   image: '/img/camBlobsButton.jpg',
-   index: 6
+  streakfire: {
+    control_type: 'xy',
+    url: 'streakfire.html',
+    image: '/img/streakfireButton.jpg',
+    index: 6
   },
-  moveVolBlobs: {
-   control_type: 'xy',
-   url: 'moveVol.html',
-   image: '/img/moveVolButton.jpg',
-   index: 7
+  shader1: {
+    control_type: 'xy',
+    url: 'shader1.html',
+    image: '/img/shader1Button.jpg',
+    index: 7
   },
+  shader2: {
+    control_type: 'xy',
+    url: 'shader2.html',
+    image: '/img/shader2Button.jpg',
+    index: 8
+  },
+  shader3: {
+    control_type: 'xy',
+    url: 'shader3.html',
+    image: '/img/shader3Button.jpg',
+    index: 9
+  },
+  // camBlobs: {
+  //  control_type: 'xy',
+  //  url: 'camBlobs.html',
+  //  image: '/img/camBlobsButton.jpg',
+  //  index: 6
+  // },
+  // moveVolBlobs: {
+  //  control_type: 'xy',
+  //  url: 'moveVol.html',
+  //  image: '/img/moveVolButton.jpg',
+  //  index: 7
+  // },
   auto: {
    control_type: 'xy',
    index: -1

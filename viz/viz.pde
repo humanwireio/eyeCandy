@@ -6,12 +6,12 @@ import netP5.*;
 //import gifAnimation.*;
 //import processing.opengl.*;
 
-import gab.opencv.*;
-import processing.video.*;
-import java.awt.*;
+//import gab.opencv.*;
+//import processing.video.*;
+//import java.awt.*;
 
-Capture video;
-OpenCV opencv;
+//Capture video;
+//OpenCV opencv;
 
 import ddf.minim.analysis.*;
 import ddf.minim.*;
@@ -23,7 +23,7 @@ AudioInput in;
 //String cam_name = "Vimicro USB2.0 PC Camera #6";
 //String cam_name = "Sirius USB2.0 Camera #2";
 //String cam_name = "USB 2.0 Camera #2";
-String cam_name = "HD USB Camera";
+//String cam_name = "HD USB Camera";
 
 OscP5 oscP5;
 
@@ -50,6 +50,10 @@ float blue_weight = .5;
 
 //audio capture
 
+
+//shaders
+PShader frag_shader_1;
+
 //GifMaker gifExport;
 
 void setup(){
@@ -59,11 +63,11 @@ void setup(){
   IMG_HEIGHT = height;
   oscP5 = new OscP5(this,12000);
 
-  video = new Capture(this, 640, 480, cam_name);
+  //video = new Capture(this, 640, 480, cam_name);
   
   //video = new Capture(this, 1280, 960, cam_name);
-  opencv = new OpenCV(this, 640, 480);
-  video.start();
+  //opencv = new OpenCV(this, 640, 480);
+  //video.start();
   
   minim = new Minim(this);
   in = minim.getLineIn(Minim.STEREO, 512);
@@ -73,15 +77,20 @@ void setup(){
   patches = new ArrayList<patch>();
   patch_switch = new ArrayList<Boolean>();
  
+  //load shaders
+  //frag_shader_1 = loadShader("noise.frag");
+  
   patches.add(new ripplingColors());
   patches.add(new daisies(this));
   patches.add(new gameOfLife(this));
   patches.add(new rippling3D());
   patches.add(new FFTCircles(this));
   patches.add(new circleFlasher(this));
+  patches.add(new streakfire(this));
+  //patches.add(new fragShaderPatch(frag_shader_1));
   //patches.add(new automata());
-  patches.add(new camBlobs(this));
-  patches.add(new MoveVol(this));
+  //patches.add(new camBlobs(this));
+  //patches.add(new MoveVol(this));
   //patches.add(new mesh());
   
   
