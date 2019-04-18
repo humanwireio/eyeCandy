@@ -52,7 +52,7 @@ float blue_weight = .5;
 
 
 //shaders
-PShader frag_shader_1;
+PShader frag_shader;
 
 //GifMaker gifExport;
 
@@ -61,8 +61,12 @@ void setup(){
   fullScreen(P3D);
   IMG_WIDTH = width;
   IMG_HEIGHT = height;
+  
   oscP5 = new OscP5(this,12000);
 
+  //load shaders
+  frag_shader = loadShader("noise.glsl");
+  
   //video = new Capture(this, 640, 480, cam_name);
   
   //video = new Capture(this, 1280, 960, cam_name);
@@ -77,9 +81,6 @@ void setup(){
   patches = new ArrayList<patch>();
   patch_switch = new ArrayList<Boolean>();
  
-  //load shaders
-  //frag_shader_1 = loadShader("noise.frag");
-  
   patches.add(new ripplingColors());
   patches.add(new daisies(this));
   patches.add(new gameOfLife(this));
@@ -87,7 +88,7 @@ void setup(){
   patches.add(new FFTCircles(this));
   patches.add(new circleFlasher(this));
   patches.add(new streakfire(this));
-  //patches.add(new fragShaderPatch(frag_shader_1));
+  patches.add(new fragShaderPatch(frag_shader));
   //patches.add(new automata());
   //patches.add(new camBlobs(this));
   //patches.add(new MoveVol(this));
@@ -258,9 +259,9 @@ void mouseDragged(){
   return true;
 }*/
 
-public static void main(String[] args) { 
-  PApplet.main(new String[]{ "--hide-stop", viz.class.getName() });
-}
+//public static void main(String[] args) { 
+//  PApplet.main(new String[]{ "--hide-stop", viz.class.getName() });
+//}
 
 void keyPressed() {
   //println("stopping export");

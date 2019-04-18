@@ -54,18 +54,18 @@ const patch_list = {
     image: '/img/shader1Button.jpg',
     index: 7
   },
-  shader2: {
-    control_type: 'xy',
-    url: 'shader2.html',
-    image: '/img/shader2Button.jpg',
-    index: 8
-  },
-  shader3: {
-    control_type: 'xy',
-    url: 'shader3.html',
-    image: '/img/shader3Button.jpg',
-    index: 9
-  },
+  // shader2: {
+  //   control_type: 'xy',
+  //   url: 'shader2.html',
+  //   image: '/img/shader2Button.jpg',
+  //   index: 8
+  // },
+  // shader3: {
+  //   control_type: 'xy',
+  //   url: 'shader3.html',
+  //   image: '/img/shader3Button.jpg',
+  //   index: 9
+  // },
   // camBlobs: {
   //  control_type: 'xy',
   //  url: 'camBlobs.html',
