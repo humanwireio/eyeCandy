@@ -65,7 +65,7 @@ void setup(){
   oscP5 = new OscP5(this,12000);
 
   //load shaders
-  frag_shader = loadShader("noise.glsl");
+  frag_shader = loadShader("shader.glsl");
   
   //video = new Capture(this, 640, 480, cam_name);
   

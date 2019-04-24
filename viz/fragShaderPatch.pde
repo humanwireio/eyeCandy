@@ -2,8 +2,9 @@ class fragShaderPatch extends patch {
   PShader frag_shader;
   private PApplet app;
   
-  fragShaderPatch(String filename){
+  fragShaderPatch(PApplet a, String filename){
     super();
+    app = a;
     frag_shader = loadShader(filename);
   }
   
