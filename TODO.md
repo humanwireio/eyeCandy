@@ -1,0 +1,3 @@
+- [ ] Fix rippling colors, wrong window size
+- [ ] Fix circ, not showing up
+- [ ] Fix ping, keeps timingout
