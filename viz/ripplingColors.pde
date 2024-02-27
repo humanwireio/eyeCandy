@@ -65,28 +65,15 @@ class ripplingColors extends patch{
     }
   }
   
-  //void update_red_weight(float f) {
-  //  red_weight = f;
-  //  println("red weight: " + str(red_weight));
-  //}
-  
   void update_red_weight(int i) {
     red_weight = i*2;
     println("updating red weight to " + str(red_weight)); 
   }
   
-  //void update_green_weight(float f) {
-  //  green_weight = f;  
-  //}
-  
   void update_green_weight(int i) {
     green_weight = i*2;
   }
   
-  //void update_blue_weight(float f) {
-  //  blue_weight = f;  
-  //}
-  //
   void update_blue_weight(int i) {
     blue_weight = i*2;
   }

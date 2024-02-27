@@ -11,7 +11,7 @@ final int IMG_HEIGHT = 720;
 IntDict dev_timers;
 IntDict dev_patches;
 
-//patches
+// patches
 //circle circ;
 ripplingColors rc;
 rippling3D r3D;
@@ -158,7 +158,7 @@ void timeout_check(){
 }
 
 void pinged(String ip){
-  dev_timers.set(ip,millis());
+  dev_timers.set(ip, millis());
 }
 
 void mouseDragged(){
