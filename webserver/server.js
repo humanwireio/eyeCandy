@@ -38,19 +38,20 @@ io.sockets.on('connection', function (socket) {
     socket.on('patchselect', function(patchName) {
         var ip  = socket.handshake.address;
         console.log('ip:', ip);
-        if (patchName == "ripplingColors")
+        switch (patchName) {
+            case "ripplingColors":
             {client.send("/1", ip)}
-        else if (patchName == "daisies")
+            case "daisies":
             {client.send("/3", ip)}
-        else if (patchName == "ripples3D")
+            case "ripples3D":
             {client.send("/2", ip)}
-        else if (patchName == "gameOfLife")
+            case "gameOfLife":
             {client.send("/4", ip)}
-        else if (patchName == "caliSunset")
+            case "caliSunset":
             {client.send("/5", ip)}
-        else if (patchName =="circs")
+            case "circs":
             {client.send("/6", ip)}
-        else if (patchName == "off")
+            case "off":
             {client.send("/9", ip)}
     });
 
