@@ -8,6 +8,7 @@
   packages = with pkgs; [
     git
     processing
+    npm-check-updates
  ];
 
   # https://devenv.sh/scripts/
