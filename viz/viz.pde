@@ -242,7 +242,7 @@ void timeout_check(){
 }
 
 void pinged(String ip){
-  dev_timers.set(ip,millis());
+  dev_timers.set(ip, millis());
 }
 
 void mouseDragged(){

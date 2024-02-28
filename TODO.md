@@ -1,0 +1,5 @@
+- [ ] Fix rippling colors, wrong window size
+- [ ] Fix circ, not showing up
+- [ ] Fix ping, keeps timingout
+- [ ] create p5.js viz
+- [ ] combine p5.js viz + controls webserver

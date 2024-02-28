@@ -2,20 +2,13 @@
 
 ![example1](https://raw.githubusercontent.com/humanwireio/eyeCandy/master/exampleImages/example1.png)
 
-[more examples](https://plus.google.com/photos/104721511489186364992/albums/5992128100467602545)
-
-
-###imagine…
+### imagine…
 You're in a room with thirty other people.
 Your phone is in your hand and your browser is open to a website, as is every other person's. The exact page (selected from a root directory page) determines what part of a complex visual on the wall you are controlling. If you leave that page the pattern you were controlling before disappears and will be replaced by a new pattern once you navigate to a new page.
 
 You can try it out right now on your computer!
 
-####donate
-
-If you like what you see here, help me fund this puppy
-
-####types of interaction
+#### types of interaction
 
 Because processing and node have libraries galore, it's easy to add almost any type of interaction.
 
