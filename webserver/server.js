@@ -17,10 +17,8 @@ app.get('/*.(js|css|jpg|html)', function(req, res){
 });
 
 io.sockets.on('connection', function (socket) {
-    socket.on('daisies', function (data) {
-        console.log(data);
-        client.send("/3/xy", data[0]), data[1];
-    });
+    var ip  = socket.handshake.address;
+    console.log('ip:', ip);
 
     socket.on('ripplingColors', function(data) {
         console.log(data);
@@ -36,26 +34,26 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('patchselect', function(patchName) {
-        var ip  = socket.handshake.address;
-        console.log('ip:', ip);
         switch (patchName) {
             case "ripplingColors":
-            {client.send("/1", ip)}
+                {client.send("/1", ip)}
             case "daisies":
-            {client.send("/3", ip)}
+                {client.send("/3", ip)}
             case "ripples3D":
-            {client.send("/2", ip)}
+                {client.send("/2", ip)}
             case "gameOfLife":
-            {client.send("/4", ip)}
+                {client.send("/4", ip)}
             case "caliSunset":
-            {client.send("/5", ip)}
+                {client.send("/5", ip)}
             case "circs":
-            {client.send("/6", ip)}
+                {client.send("/6", ip)}
             case "off":
-            {client.send("/9", ip)}
+                {client.send("/9", ip)}
+        }
     });
 
     socket.on('ping', function() {
+        console.log('ping')
         var ip  = socket.handshake.address['address'];
         client.send("/ping", ip);
     });
