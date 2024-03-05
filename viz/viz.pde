@@ -3,8 +3,9 @@ import oscP5.*;
 
 import java.util.Map;
 
-//import gifAnimation.*;
 //import processing.opengl.*;
+
+import gifAnimation.*;
 
 //import gab.opencv.*;
 //import processing.video.*;
@@ -51,7 +52,7 @@ float blue_weight = .5;
 //shaders
 PShader frag_shader;
 
-//GifMaker gifExport;
+GifMaker gifExport;
 
 void setup(){
   //size(IMG_WIDTH,IMG_HEIGHT, P3D);
@@ -91,16 +92,16 @@ void setup(){
   //patches.add(new MoveVol(this));
   //patches.add(new mesh());
   
-  patches.get("circs").setIsActive(true);
+  patches.get("daisies").setIsActive(true);
   
   oscP5.plug(this,"pinged","/ping");
 //  oscP5.plug(this,"update_red_weight","/1/fader1");
 //  oscP5.plug(this,"update_green_weight","/1/fader2");
 //  oscP5.plug(this,"update_blue_weight","/1/fader3");
 
-  //gifExport = new GifMaker(this, "export.gif");
-  //gifExport.setRepeat(0); // make it an "endless" animation
-  //gifExport.setTransparent(0,0,0); // make black the transparent color. every black pixel in the animation will be transparent
+  gifExport = new GifMaker(this, "export.gif");
+  gifExport.setRepeat(0); // make it an "endless" animation
+  gifExport.setTransparent(0,0,0); // make black the transparent color. every black pixel in the animation will be transparent
   
   noCursor();
 }
@@ -127,8 +128,8 @@ void draw(){
     }
 }
  
-  //gifExport.setDelay(1);
-  //gifExport.addFrame(); 
+  gifExport.setDelay(1);
+  gifExport.addFrame(); 
 }
 
 void draw_connection_info(){
@@ -225,8 +226,6 @@ void pinged(String ip){
 }
 
 void mouseDragged(){
-  println("mouseX: " + mouseX);
-  println("mouseY: " + mouseY);
   patches.forEach((k, v) -> v.mouseDragged());
 }
 
@@ -239,6 +238,6 @@ void mouseDragged(){
 //}
 
 void keyPressed() {
-  //println("stopping export");
-  //gifExport.finish();
+  println("stopping export");
+  gifExport.finish();
 }
