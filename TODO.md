@@ -2,6 +2,6 @@
 - [ ] Fix circ, not showing up
 - [ ] Fix streakfire interface
 - [ ] Fix shader patch
-- [ ] Fix ping, keeps timingout
+- [x] Fix ping, keeps timingout
 - [ ] create p5.js viz
 - [ ] combine p5.js viz + controls webserver
