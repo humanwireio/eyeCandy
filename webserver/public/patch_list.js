@@ -42,19 +42,19 @@ const patch_list = {
     image: "/img/circFlashButton.jpg",
     index: "circleFlasher",
   },
-  streakfire: {
-    control_type: "xy",
-    url: "streakfire.html",
-    image: "/img/circFlashButton.jpg",
-    // image: '/img/streakfireButton.jpg',
-    index: "streakfire",
-  },
-  shader: {
-    control_type: "xy",
-    url: "shader1.html",
-    image: "/img/shader1Button.jpg",
-    index: 7,
-  },
+  // streakfire: {
+  //   control_type: "xy",
+  //   url: "streakfire.html",
+  //   image: "/img/circFlashButton.jpg",
+  //   // image: '/img/streakfireButton.jpg',
+  //   index: "streakfire",
+  // },
+  // shader: {
+  //   control_type: "xy",
+  //   url: "shader1.html",
+  //   image: "/img/shader1Button.jpg",
+  //   index: 7,
+  // },
   // shader2: {
   //   control_type: 'xy',
   //   url: 'shader2.html',
