@@ -33,7 +33,7 @@ class rippling3D extends patch{
     oscP5.plug(this,"update_roundedness","/1/fader4");
   }
   
-  void render(){
+  void _render(){
     pushMatrix();
     pushStyle();
     colorMode(RGB,255);

@@ -1,8 +1,8 @@
 import netP5.*;
 import oscP5.*;
 
-import oscP5.*;
-import netP5.*;
+import java.util.Map;
+
 //import gifAnimation.*;
 //import processing.opengl.*;
 
@@ -13,12 +13,9 @@ import netP5.*;
 //Capture video;
 //OpenCV opencv;
 
-import ddf.minim.analysis.*;
-import ddf.minim.*;
+import processing.sound.*;
+AudioIn in;
 
-Minim minim;
-AudioInput in;
-  
 //String cam_name = "FaceTime HD Camera (Built-in)";
 //String cam_name = "Vimicro USB2.0 PC Camera #6";
 //String cam_name = "Sirius USB2.0 Camera #2";
@@ -28,6 +25,7 @@ AudioInput in;
 OscP5 oscP5;
 
 // image dimensions
+
 int IMG_WIDTH = 1280;
 int IMG_HEIGHT = 720;
 //final int IMG_WIDTH = 300;
@@ -35,10 +33,9 @@ int IMG_HEIGHT = 720;
 
 //device management
 IntDict dev_timers;
-IntDict dev_patches;
+StringDict dev_patches;
 
-ArrayList<patch> patches;
-ArrayList<Boolean> patch_switch;
+HashMap<String, patch> patches;
 
 //random color weights
 float red_weight = .5;
@@ -58,7 +55,8 @@ PShader frag_shader;
 
 void setup(){
   //size(IMG_WIDTH,IMG_HEIGHT, P3D);
-  fullScreen(P3D);
+  //fullScreen(P3D);
+  fullScreen();
   IMG_WIDTH = width;
   IMG_HEIGHT = height;
   
@@ -73,34 +71,27 @@ void setup(){
   //opencv = new OpenCV(this, 640, 480);
   //video.start();
   
-  minim = new Minim(this);
-  in = minim.getLineIn(Minim.STEREO, 512);
+  //minim = new Minim(this);
+  //in = minim.getLineIn(Minim.STEREO, 512);
     
-  dev_patches = new IntDict();
+  dev_patches = new StringDict();
   dev_timers = new IntDict();
-  patches = new ArrayList<patch>();
-  patch_switch = new ArrayList<Boolean>();
- 
-  patches.add(new ripplingColors());
-  patches.add(new daisies(this));
-  patches.add(new gameOfLife(this));
-  patches.add(new rippling3D());
-  patches.add(new FFTCircles(this));
-  patches.add(new circleFlasher(this));
-  patches.add(new streakfire(this));
-  patches.add(new fragShaderPatch(frag_shader));
+  patches = new HashMap<String, patch>();
+  
+  patches.put("ripplingColors", new ripplingColors());
+  patches.put("daisies", new daisies(this));
+  patches.put("gameOfLife", new gameOfLife(this));
+  //patches.add(new rippling3D());
+  patches.put("circs", new FFTCircles(this));
+  patches.put("circFlash", new circleFlasher(this));
+  patches.put("streakfire", new streakfire(this));
+  //patches.put("shader", new fragShaderPatch(frag_shader));
   //patches.add(new automata());
   //patches.add(new camBlobs(this));
   //patches.add(new MoveVol(this));
   //patches.add(new mesh());
   
-  
-  int num_of_patches = patches.size();
-  for (int i=0; i < num_of_patches; i++) {
-    patch_switch.add(false);
-  }
-  //patch_switch.set(num_of_patches-2,true);
-  patch_switch.set(num_of_patches-2, true);
+  patches.get("circs").setIsActive(true);
   
   oscP5.plug(this,"pinged","/ping");
 //  oscP5.plug(this,"update_red_weight","/1/fader1");
@@ -122,21 +113,19 @@ void draw(){
 //  blue_weight = int(random(255));
   //draw_connection_info();
 
-  for (int i=0; i<patches.size(); i++){
-   if (patch_switch.get(i)){
-     //println("i'm here");
-     //println(patch_switch);
-     patch p = patches.get(i);
-     p.render(); 
-   }
-  }
+  patches.forEach((k, v) -> v.render());
 
   //draw_connection_info();
   
   reset_patch_switch();
-  for (int i : dev_patches.values()) {
-    patch_switch.set((i), true);
-  }
+  for (String i : dev_patches.values()) {
+    try {
+      patches.get(i).setIsActive(true);
+    } catch (Exception e) {
+      println("Failed to load patch: " + i);
+      println("Exception: ", e);
+    }
+}
  
   //gifExport.setDelay(1);
   //gifExport.addFrame(); 
@@ -156,19 +145,9 @@ void draw_connection_info(){
 }
 
 void reset_patch_switch() {
-  for (int i=0; i < patch_switch.size(); i++) {
-    patch_switch.set(i,false);
-  } 
+  patches.forEach((k, v) -> v.setIsActive(false));
 }
-void pick_single_patch(ArrayList<Boolean> patch_swtich, int num){
-  for (int i=0; i < patch_switch.size(); i++) {
-    if (i==num) {
-      patch_switch.set(i,true);
-    } else {
-      patch_swtich.set(i,false);
-    }
-  }
-}
+
 /* incoming osc message are forwarded to the oscEvent method. */
 void oscEvent(OscMessage theOscMessage) {
   /* with theOscMessage.isPlugged() you check if the osc message has already been
@@ -191,21 +170,21 @@ void oscEvent(OscMessage theOscMessage) {
 if(theOscMessage.isPlugged()==false) {
    println("beep1");
    println(theOscMessage.addrPattern());
-   String[] m = match(theOscMessage.addrPattern(), "/[0-9]*/");
-   println(m);
-   if (m.length == 1) {
+   String[] m = split(theOscMessage.addrPattern(), '/');
+   println("m[1]: ", ((Object[])m)[1]);
+   if (m.length == 3) {
      println("beep2");
      try {
         println("beep3");
-        int patch_num = int(str(theOscMessage.addrPattern().charAt(1)));
+        String patch_name = m[1];
           
-        println( "Patch_num: " + str(patch_num));
+        println( "Patch_name: " + patch_name);
         //device management
-        if (patch_num==9){
+        if (patch_name=="exit"){
           dev_timers.remove(ip);
           dev_patches.remove(ip);
         } else {
-          dev_patches.set(ip, patch_num);
+          dev_patches.set(ip, patch_name);
           dev_timers.set(ip, millis());
         }
       
@@ -248,11 +227,7 @@ void pinged(String ip){
 void mouseDragged(){
   println("mouseX: " + mouseX);
   println("mouseY: " + mouseY);
-  for (int i=0; i<patch_switch.size(); i++){
-    if (patch_switch.get(i)){
-      patches.get(i).mouseDragged();
-    }
-  }
+  patches.forEach((k, v) -> v.mouseDragged());
 }
 
 /*boolean sketchFullScreen() {

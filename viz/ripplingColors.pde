@@ -7,8 +7,10 @@ class ripplingColors extends patch{
   char drawShape;
   int roundedness;
   float randomness = 75;
+  String name;
   
   ripplingColors(){
+    name = "ripplingColors";
     deform = 0;
     drawShape = 'r';
     roundedness = 0;
@@ -21,15 +23,15 @@ class ripplingColors extends patch{
       wave[i] = abs(cos(amount));
       waveColor[i] = 0;
     }
-    oscP5.plug(this,"update_red_weight","/0/fader1");
-    oscP5.plug(this,"update_green_weight","/0/fader2");
-    oscP5.plug(this,"update_blue_weight","/0/fader3");
-    oscP5.plug(this,"update_deform","/0/fader4");
-    oscP5.plug(this,"update_roundedness","/0/fader5");
+    oscP5.plug(this,"update_red_weight","/" + name + "/fader1");
+    oscP5.plug(this,"update_green_weight","/" + name + "/fader2");
+    oscP5.plug(this,"update_blue_weight","/" + name + "/fader3");
+    oscP5.plug(this,"update_deform","/" + name + "/fader4");
+    oscP5.plug(this,"update_roundedness","/" + name + "/fader5");
 
   }
   
-  void render(){
+  void _render(){
     pushMatrix();
     pushStyle();
     colorMode(RGB,255);

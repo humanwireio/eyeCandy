@@ -7,7 +7,7 @@
 //    noise_frag = loadShader(shader_filename);
 //  }
   
-//  void render(){
+//  void _render(){
 //    filter(noise_frag);
 //  }
 //}

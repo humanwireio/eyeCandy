@@ -1,58 +1,59 @@
 const patch_list = {
   ripplingColors: {
-   control_type: 'fader',
-   url: 'ripplingColors.html',
-   image: '/img/ripplingColorsButton.jpg',
-   background: '/img/ripplingColorsBackground.jpg',
-   defaultValue: [10, 30, 50, 70, 100],
-   index: 0
+    control_type: "fader",
+    url: "ripplingColors.html",
+    image: "/img/ripplingColorsButton.jpg",
+    background: "/img/ripplingColorsBackground.jpg",
+    defaultValue: [10, 30, 50, 70, 100],
+    index: "ripplingColors",
   },
   daisies: {
-   control_type: 'xy',
-   url: 'daisies.html',
-   image: '/img/daisiesButton.jpg',
-   defaultValue: [0, 0],
-   background: '/img/daisiesBackground.jpg',
-   index: 1
+    control_type: "xy",
+    url: "daisies.html",
+    image: "/img/daisiesButton.jpg",
+    defaultValue: [0, 0],
+    background: "/img/daisiesBackground.jpg",
+    index: "daisies",
   },
   gameOfLife: {
-   control_type: 'xy',
-   url: 'gameOfLife.html',
-   image: '/img/gameOfLifeButton.jpg',
-   background: '/img/gameOfLifeBackground.jpg',
-   index: 2
+    control_type: "xy",
+    url: "gameOfLife.html",
+    image: "/img/gameOfLifeButton.jpg",
+    background: "/img/gameOfLifeBackground.jpg",
+    index: "gameOfLife",
   },
-  ripples3D: {
-   control_type: 'xy',
-   url: 'ripples3D.html',
-   image: '/img/ripples3DButton.jpg',
-   background: '/img/ripples3DBackground.jpg',
-   index: 3
-  },
+  // ripples3D: {
+  //  control_type: 'xy',
+  //  url: 'ripples3D.html',
+  //  image: '/img/ripples3DButton.jpg',
+  //  background: '/img/ripples3DBackground.jpg',
+  //  index: 'ripples3D'
+  // },
   circs: {
-   control_type: 'xy',
-   url: 'circs.html',
-   image: '/img/circsButton.jpg',
-   background: '/img/circsBackground.jpg',
-   index: 4
+    control_type: "xy",
+    url: "circs.html",
+    image: "/img/circsButton.jpg",
+    background: "/img/circsBackground.jpg",
+    index: "circs",
   },
-  circFlash: {
-   control_type: 'xy',
-   url: 'circFlash.html',
-   image: '/img/circFlashButton.jpg',
-   index: 5
+  circleFlasher: {
+    control_type: "xy",
+    url: "circFlash.html",
+    image: "/img/circFlashButton.jpg",
+    index: "circleFlasher",
   },
   streakfire: {
-    control_type: 'xy',
-    url: 'streakfire.html',
-    image: '/img/streakfireButton.jpg',
-    index: 6
+    control_type: "xy",
+    url: "streakfire.html",
+    image: "/img/circFlashButton.jpg",
+    // image: '/img/streakfireButton.jpg',
+    index: "streakfire",
   },
-  shader1: {
-    control_type: 'xy',
-    url: 'shader1.html',
-    image: '/img/shader1Button.jpg',
-    index: 7
+  shader: {
+    control_type: "xy",
+    url: "shader1.html",
+    image: "/img/shader1Button.jpg",
+    index: 7,
   },
   // shader2: {
   //   control_type: 'xy',
@@ -70,26 +71,26 @@ const patch_list = {
   //  control_type: 'xy',
   //  url: 'camBlobs.html',
   //  image: '/img/camBlobsButton.jpg',
-  //  index: 6
+  //  index: 'camBlobs'
   // },
   // moveVolBlobs: {
   //  control_type: 'xy',
   //  url: 'moveVol.html',
   //  image: '/img/moveVolButton.jpg',
-  //  index: 7
+  //  index: 'moveVolBlobs'
   // },
   auto: {
-   control_type: 'xy',
-   index: -1
+    control_type: "xy",
+    index: -1,
   },
   off: {
-   control_type: '',
-   index: -1
-  }
-}
+    control_type: "",
+    index: -1,
+  },
+};
 
-if (module){
-  module.exports = patch_list
+if (module) {
+  module.exports = patch_list;
 } else {
-  window.patch_list = patch_list
+  window.patch_list = patch_list;
 }

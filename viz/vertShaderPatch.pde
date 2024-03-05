@@ -5,7 +5,7 @@ class vertShaderPatch extends patch {
     vert_shader = loadShader(filename);
   }
   
-  void render(){
+  void _render(){
     shader(vert_shader);
   }
 }

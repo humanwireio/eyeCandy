@@ -14,7 +14,7 @@
 //    //println(Capture.list());
 //  }
   
-//  void render(){
+//  void _render(){
 //    pushStyle();
 //    opencv.loadImage(video);
 //    cur = opencv.getSnapshot();

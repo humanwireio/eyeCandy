@@ -3,9 +3,11 @@ class circleFlasher extends patch {
    private PApplet app;
    int drawX, drawY, delX, delY;
    int curX, curY, prevX, prevY;
+   String name;
    
    circleFlasher(PApplet app){
      this.app = app;
+     name = "circleFlasher";
      drawX = width/2;
      drawY = height/2;
      delX = 0;
@@ -14,10 +16,10 @@ class circleFlasher extends patch {
      curY = 0;
      prevX = 0;
      prevY = 0;
-     oscP5.plug(this,"update","/5/xy");
+     oscP5.plug(this,"update","/" + name + "/xy");
    }
    
-   void render(){
+   void _render(){
     pushMatrix();
     //translate(width/2, height/2);
     //background(random(255),random(255),random(255),random((delX^2 + delY^2)));

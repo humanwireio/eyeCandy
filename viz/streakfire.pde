@@ -8,7 +8,7 @@ class streakfire extends patch{
     oscP5.plug(this,"update","/6/xy");
   }
   
-  void render(){
+  void _render(){
     int offset_x = 0;
     int offset_y = 0;
     pushMatrix();

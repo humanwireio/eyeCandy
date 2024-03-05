@@ -1,7 +1,7 @@
 class daisies extends patch{
 
-  BeatDetect beat;
-  float beatScaleFactor = 0; //varies from 0-1  
+  //BeatDetect beat;
+  //float beatScaleFactor = 0; //varies from 0-1  
   //Daisies From Mathographics book by Robert Dixon pg 131
   float K = 5;
   float C = 360/222.49;
@@ -17,20 +17,20 @@ class daisies extends patch{
   
   daisies(PApplet app){
     this.app = app;
-    beat = new BeatDetect();
+    //beat = new BeatDetect();
     
     //fill(255);
-    //oscP5.plug(this,"updateK","/1/fader1");
-    //oscP5.plug(this,"updateC","/1/fader2");
-    oscP5.plug(this,"update","/1/xy");
-    //oscP5.plug(this,"update_do_colors","/3/toggle1");
-    oscP5.plug(this,"updateD","/0/fader1");
+    //oscP5.plug(this,"updateK","/daisies/fader1");
+    //oscP5.plug(this,"updateC","/daisies/fader2");
+    oscP5.plug(this,"update","/daisies/xy");
+    //oscP5.plug(this,"update_do_colors","/daisies/toggle1");
+    oscP5.plug(this,"updateD","/daisies/fader1");
   }
 
-  void render() {
+  void _render() {
     add_randomness();
-    beat.detect(in.mix);
-    add_beat_influence();
+    //beat.detect(in.mix);
+    //add_beat_influence();
     pushMatrix();
     pushStyle();
     noFill();
@@ -96,7 +96,7 @@ class daisies extends patch{
       K = constrain(K, 10,200);
       amount_of_randomness = amount_of_randomness * (1+random(0.15));
       amount_of_randomness = constrain(amount_of_randomness, 0, 1);
-      add_beat_influence();
+      //add_beat_influence();
     } else {
       amount_of_randomness = .008;
     }
@@ -104,30 +104,30 @@ class daisies extends patch{
     prevK = K;
   }
  
-  void add_beat_influence(){
-    float scaleAdjust = 0;
-    if (beat.isOnset()){
-       scaleAdjust--;
-    } 
+//  void add_beat_influence(){
+//    float scaleAdjust = 0;
+//    if (beat.isOnset()){
+//       scaleAdjust--;
+//    } 
     
-    if (beat.isKick()){
-      scaleAdjust++;
-    }
+//    if (beat.isKick()){
+//      scaleAdjust++;
+//    }
     
-    if (beat.isSnare()){
-      scaleAdjust--;
-    }
+//    if (beat.isSnare()){
+//      scaleAdjust--;
+//    }
     
-    if (beat.isHat()){
-      scaleAdjust++;
-    }
+//    if (beat.isHat()){
+//      scaleAdjust++;
+//    }
     
-    beatScaleFactor = beatScaleFactor*.5 + scaleAdjust*.5 + .1;
-    float beatScaleOffset = 1;
-    //println("beatScaleFactor = " + beatScaleFactor);
-    K = constrain((beatScaleFactor+beatScaleOffset) * K, 10, 200);
-    C = constrain((beatScaleFactor+beatScaleOffset) * C, 1, 20);
-    prevC = C;
-    prevK = K;
-  } 
+//    beatScaleFactor = beatScaleFactor*.5 + scaleAdjust*.5 + .1;
+//    float beatScaleOffset = 1;
+//    //println("beatScaleFactor = " + beatScaleFactor);
+//    K = constrain((beatScaleFactor+beatScaleOffset) * K, 10, 200);
+//    C = constrain((beatScaleFactor+beatScaleOffset) * C, 1, 20);
+//    prevC = C;
+//    prevK = K;
+//  } 
 }

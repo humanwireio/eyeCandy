@@ -1,6 +1,6 @@
 //class MoveVol extends patch{
 
-//  BeatDetect beat;
+//  BeatDetector beatDetector;
 //  int numPixels;
 //  int[] previousFrame;
 //  private PApplet app;
@@ -8,7 +8,7 @@
   
 //  MoveVol(PApplet app) {
 //    this.app = app;
-//    beat = new BeatDetect();
+//    beatDetector = new BeatDetector();
   
 //    // This the default video input, see the GettingStartedCapture 
 //    // example if it creates an error
@@ -19,7 +19,7 @@
 //    loadPixels();
 //  }
 
-//  void render() {
+//  void _render() {
 //     beat.detect(in.mix);
 //     if (video.available()) {
 //      // When using video to manipulate the screen, use video.available() and
@@ -48,7 +48,7 @@
 //        // Set transparency based on minim sound energy
 //        int opacity;
 //        diffG = int(diffG * .25);
-//        if (this.isBeat()) {
+//        if (beatDetector.isBeat()) {
 //          opacity = 125;
 //          diffB = int(random(0, 0.5) * diffB);
 //        } else {
@@ -69,9 +69,5 @@
 //        println(movementSum); // Print the total amount of movement to the console
 //      }
 //    }
-//  }
-  
-//  boolean isBeat(){
-//    return beat.isOnset();
 //  }
 //}

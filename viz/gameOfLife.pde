@@ -30,7 +30,7 @@ class gameOfLife extends patch {
     //oscP5.plug(this, "evolveEvery", "/2/evolveEvery");
   }
 
-  void render() {
+  void _render() {
     println(last_cells==cells);
     println("updateevery=" + str(evolve_every_n_renders));
     if (all_dead() | (last_cells==cells) | all_alive()) {

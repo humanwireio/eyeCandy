@@ -1,5 +1,7 @@
-- [ ] Fix rippling colors, wrong window size
+- [x] Fix rippling colors, wrong window size
 - [ ] Fix circ, not showing up
+- [ ] Fix streakfire interface
+- [ ] Fix shader patch
 - [ ] Fix ping, keeps timingout
 - [ ] create p5.js viz
 - [ ] combine p5.js viz + controls webserver
