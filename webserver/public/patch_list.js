@@ -36,19 +36,20 @@ const patch_list = {
     background: "/img/circsBackground.jpg",
     index: "circs",
   },
-  circleFlasher: {
+  circFlash: {
     control_type: "xy",
     url: "circFlash.html",
     image: "/img/circFlashButton.jpg",
-    index: "circleFlasher",
+    background: "/img/cirFlashBackground.jpg",
+    index: "circFlash",
   },
-  // streakfire: {
-  //   control_type: "xy",
-  //   url: "streakfire.html",
-  //   image: "/img/circFlashButton.jpg",
-  //   // image: '/img/streakfireButton.jpg',
-  //   index: "streakfire",
-  // },
+  streakfire: {
+    control_type: "xy",
+    url: "streakfire.html",
+    image: "/img/circFlashButton.jpg",
+    // image: '/img/streakfireButton.jpg',
+    index: "streakfire",
+  },
   // shader: {
   //   control_type: "xy",
   //   url: "shader1.html",
@@ -89,7 +90,7 @@ const patch_list = {
   },
 };
 
-if (module) {
+if (typeof module != "undefined") {
   module.exports = patch_list;
 } else {
   window.patch_list = patch_list;

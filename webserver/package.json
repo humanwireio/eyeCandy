@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
+    "handlebars": "^4.7.8",
     "lodash": "^4.17.21",
     "node-osc": ">=9.1.0",
     "socket.io": "^4.7.4"
@@ -24,6 +25,5 @@
     "url": "https://github.com/humanwireio/eyeCandy/issues"
   },
   "homepage": "https://humanwireio.github.io/eyeCandy",
-  "devDependencies": {},
   "license": "MIT"
 }

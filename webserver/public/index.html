@@ -1,54 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
- 	<head>
-	<meta charset="utf-8">
-        <title>eyeCandy</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <title>eyeCandy</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="css/custom.css" rel="stylesheet">
-    	<style>
-      	body {
-        	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-            color:#FFFFFF;
-            background-image:url("/img/patchesBackground.jpg");
-            background-size: 100%;
-      	}
-    	</style>
-      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.core.min.js'></script>
-    	<!-- fav and touch icons -->
-        <!-- <link rel="shortcut icon" href="ico/favicon.ico">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        color: #ffffff;
+        background-image: url("/img/patchesBackground.jpg");
+        background-size: 100%;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.core.min.js"
+    ></script>
+    <!-- fav and touch icons -->
+    <!-- <link rel="shortcut icon" href="ico/favicon.ico">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png"> -->
- 	</head>
+  </head>
+  <body>
     <center>
-        <h1>eyeCandy</h1>
-        <h2>Patches</h2>
-        <div id='container' class="container">
-        </div>
-
+      <h1>eyeCandy</h1>
+      <h2>Patches</h2>
+      <div id="container" class="container"></div>
     </center>
-    <script type='text/javascript' src='/patch_list.js'></script>
-    <script type='text/javascript'>
-        const container = document.getElementById('container')
-        _.forEach(patch_list, p => {
-          if (p.url && p.image) {
-            const a = document.createElement('a')
-            a.href = p.url
-            a.class = "btn btn-info"
-            const img = document.createElement('img')
-            img.src = p.image
-            a.appendChild(img)
-            container.appendChild(a)
-          }
-        })
+    <script type="text/javascript" src="/patch_list.js"></script>
+    <script type="text/javascript">
+      const container = document.getElementById("container");
+      _.forEach(patch_list, (p) => {
+        if (p.url && p.image) {
+          const a = document.createElement("a");
+          a.href = p.index;
+          a.class = "btn btn-info";
+          const img = document.createElement("img");
+          img.src = p.image;
+          a.appendChild(img);
+          container.appendChild(a);
+        }
+      });
     </script>
 
-    <div id="patchselect" class="off" style="display:none"></div>
-	<!-- /container -->
-	<script src="js/third_party/jquery-1.8.2.min.js"></script>
-	<script src="js/third_party/bootstrap.min.js"></script>
+    <div id="patchselect" class="off" style="display: none"></div>
+    <!-- /container -->
+    <script src="js/third_party/jquery-1.8.2.min.js"></script>
+    <script src="js/third_party/bootstrap.min.js"></script>
   </body>
 </html>
