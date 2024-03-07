@@ -72,9 +72,6 @@ void setup(){
   //opencv = new OpenCV(this, 640, 480);
   //video.start();
   
-  //minim = new Minim(this);
-  //in = minim.getLineIn(Minim.STEREO, 512);
-    
   dev_patches = new StringDict();
   dev_timers = new IntDict();
   patches = new HashMap<String, patch>();

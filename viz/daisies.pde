@@ -90,8 +90,10 @@ class daisies extends patch{
 
   void add_randomness(){
     if ((C == prevC) && (K == prevK) && (random(3)>1)){
-      C = C + map(random(1), 0, 1, -(amount_of_randomness*20)/2, (amount_of_randomness*20)/2);
-      K = K + map(random(1), 0, 1, -(amount_of_randomness*200)/2, (amount_of_randomness*200)/2);
+      int C_factor = 20;
+      C = C + map(random(1), 0, 1, -(amount_of_randomness*C_factor)/2, (amount_of_randomness*C_factor)/2);
+      int K_factor = 200;
+      K = K + map(random(1), 0, 1, -(amount_of_randomness*K_factor)/2, (amount_of_randomness*K_factor)/2);
       C = constrain(C, 1, 20);
       K = constrain(K, 10,200);
       amount_of_randomness = amount_of_randomness * (1+random(0.15));

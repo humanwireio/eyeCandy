@@ -24,9 +24,9 @@ class gameOfLife extends patch {
     randomize(1,1);
     evolve_every_n_renders = 1;
 
-    oscP5.plug(this, "randomize", "/2/toggle1");
-    oscP5.plug(this, "glider", "/2/toggle2");
-    oscP5.plug(this, "xyPad", "/2/xy");
+    //oscP5.plug(this, "randomize", "/gameOfLife/toggle1");
+    //oscP5.plug(this, "glider", "/gameOfLife/toggle2");
+    oscP5.plug(this, "xyPad", "/gameOfLife/xy");
     //oscP5.plug(this, "evolveEvery", "/2/evolveEvery");
   }
 
